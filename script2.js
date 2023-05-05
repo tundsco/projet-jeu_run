@@ -58,7 +58,7 @@ window.addEventListener('keydown', function(event) {
 const obstacles = document.querySelectorAll('.obstacle');
 
 obstacles.forEach((obstacle) => {
-  const duration = 4500;
+  const duration = 4200;
   const containerHeight = document.documentElement.clientHeight;
   const obstacleHeight = obstacle.offsetHeight;
   const distance = containerHeight + obstacleHeight;
@@ -76,7 +76,7 @@ obstacles.forEach((obstacle) => {
       obstacle.style.top = position + 'px';
       requestAnimationFrame(animateObstacle);
     } else {
-      obstacle.style.top = '20px';
+      obstacle.style.top = '0px';
       startTime = performance.now();
       startPosition = obstacle.offsetTop;
       requestAnimationFrame(animateObstacle);
@@ -86,6 +86,54 @@ obstacles.forEach((obstacle) => {
   requestAnimationFrame(animateObstacle);
 });
 
+function checkCollisions() {
+  const player = document.getElementsByClassName('caractere1')[0];
+  const obstacle1 = document.getElementsByClassName('obstacle1')[0];
+  const obstacle2 = document.getElementsByClassName('obstacle2')[0];
+  const obstacle3 = document.getElementsByClassName('obstacle3')[0];
+  const obstacle4 = document.getElementsByClassName('obstacle4')[0];
+
+  if (checkCollision(player, obstacle1) || 
+      checkCollision(player, obstacle2) || 
+      checkCollision(player, obstacle3) || 
+      checkCollision(player, obstacle4)) {
+    // Collision détectée, faire quelque chose ici
+    console.log('Collision détectée');
+  }
+}
+
+function checkCollision(element1, element2) {
+  const rect1 = element1.getBoundingClientRect();
+  const rect2 = element2.getBoundingClientRect();
+  return !(
+    rect1.bottom < rect2.top ||
+    rect1.top > rect2.bottom ||
+    rect1.right < rect2.left ||
+    rect1.left > rect2.right
+  );
+}
+
+// Fonction pour vérifier les collisions à chaque frame
+function checkCollisions() {
+  obstacles.forEach(obstacle => {
+    if (checkCollision(player, obstacle)) {
+      // Afficher le message "Game Over"
+      const gameOver = document.createElement('div');
+      gameOver.textContent = 'Game Over';
+      gameOver.style.position = 'fixed';
+      gameOver.style.top = '50%';
+      gameOver.style.left = '50%';
+      gameOver.style.transform = 'translate(-50%, -50%)';
+      gameOver.style.backgroundColor = 'red';
+      gameOver.style.color = 'white';
+      gameOver.style.padding = '20px';
+      document.body.appendChild(gameOver);
+      
+      // Arrêter le jeu
+      gameRunning = false;
+    }
+  });
+}
 
 let gamerunning = true
 
@@ -93,6 +141,7 @@ let gamerunning = true
 function animate() {
   if (gamerunning) {
     // ...
+    checkCollisions();
     requestAnimationFrame(animate);
   }
 }

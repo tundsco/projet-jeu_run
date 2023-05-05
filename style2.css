@@ -1,0 +1,54 @@
+body{
+    background-image: url(./image/R_copie.png);
+    background-size: cover;
+}
+
+main{
+    width: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.caractere1{
+    height: 200px;
+    display: block;
+    margin: auto;
+    max-width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.obstacle1 img{
+    width: 70px;
+    position: absolute;
+}
+
+.obstacle2 img{
+    width: 50px;
+    position: absolute;
+}
+
+.obstacle3 img{
+    width: 80px;
+    position: absolute;
+}
+
+.obstacle4 img{
+    width: 30px;
+}
+
+.obstacle5 img{
+    width: 20px;
+}
+
+.obstacle{
+    display: flex;
+    width: 10%;
+    margin: 0 auto;
+    margin-top: 50px;
+    justify-content: space-around;
+}

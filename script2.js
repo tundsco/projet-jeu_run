@@ -12,11 +12,11 @@ function jump() {
       playerTop = parseInt(window.getComputedStyle(player).getPropertyValue('top'));
       const boardTop = parseInt(window.getComputedStyle(board).getPropertyValue('top'));
 
-      if (playerTop > originalPlayerTop - 200) {
+      if (playerTop > originalPlayerTop - 250) {
         player.style.top = (playerTop - 10) + 'px';
       }
 
-      if (playerTop <= originalPlayerTop - 200) {
+      if (playerTop <= originalPlayerTop - 250) {
         clearInterval(jumpInterval);
 
         let fallInterval = setInterval(function() {
@@ -56,13 +56,13 @@ window.addEventListener('keydown', function(event) {
 const obstacles = document.querySelectorAll('.obstacle');
 
 obstacles.forEach((obstacle) => {
-  const duration = 4000;
+  const duration = 4500;
   const containerHeight = document.documentElement.clientHeight;
   const obstacleHeight = obstacle.offsetHeight;
   const distance = containerHeight + obstacleHeight;
   const speed = distance / duration;
-  const startPosition = obstacle.offsetTop;
-  const startTime = performance.now();
+  let startPosition = obstacle.offsetTop;
+  let startTime = performance.now();  
 
   obstacle.style.top = startPosition + 'px';
 
@@ -74,8 +74,7 @@ obstacles.forEach((obstacle) => {
       obstacle.style.top = position + 'px';
       requestAnimationFrame(animateObstacle);
     } else {
-      obstacle.style.top = '-50px';
-      obstacle.style.left = Math.random() * (window.innerWidth - obstacle.offsetWidth) + 'px';
+      obstacle.style.top = '20px';
       startTime = performance.now();
       startPosition = obstacle.offsetTop;
       requestAnimationFrame(animateObstacle);
@@ -84,3 +83,17 @@ obstacles.forEach((obstacle) => {
 
   requestAnimationFrame(animateObstacle);
 });
+
+
+let gamerunning = true
+
+// Animation loop
+function animate() {
+  if (gamerunning) {
+    // ...
+    requestAnimationFrame(animate);
+  }
+}
+
+
+animate();

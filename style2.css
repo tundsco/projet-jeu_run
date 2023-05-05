@@ -23,32 +23,37 @@ main{
 }
 
 .obstacle1 img{
-    width: 70px;
+    width: 150px;
     position: absolute;
+    margin-top: 200px;
 }
 
 .obstacle2 img{
-    width: 50px;
+    width: 120px;
     position: absolute;
 }
 
 .obstacle3 img{
-    width: 80px;
+    width: 110px;
     position: absolute;
+    margin-top: 200px;
 }
 
-.obstacle4 img{
-    width: 30px;
+.bonus1 img{
+    width: 80px;
+    margin-top: 200px;
 }
 
-.obstacle5 img{
-    width: 20px;
+.bonus2 img{
+    width: 50px;
+    margin-top: 150px;
 }
 
 .obstacle{
     display: flex;
     width: 10%;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 20px;
     justify-content: space-around;
+    position: relative;
 }

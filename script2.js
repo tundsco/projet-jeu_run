@@ -5,6 +5,8 @@ let isJumping = false;
 let playerTop = parseInt(window.getComputedStyle(player).getPropertyValue('top'));
 let originalPlayerTop = playerTop;
 
+
+// Cette fontion permet au joueur de sauter et de revenir automatiquement à sa position de départ
 function jump() {
   if (!isJumping) {
     isJumping = true;

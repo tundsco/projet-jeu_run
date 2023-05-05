@@ -24,7 +24,7 @@ main{
 }
 
 .caractere1{
-    height: 200px;
+    height: 170px;
     display: block;
     margin: auto;
     max-width: 100%;
@@ -41,11 +41,11 @@ main{
 }
 
 .obstacle2 img{
-    width: 150px;
+    width: 120px;
     position: absolute;
 }
 
-.obstacle3 img{
+.bonus3 img{
     width: 110px;
     position: absolute;
     margin-top: 200px;
@@ -67,4 +67,16 @@ main{
     margin: 0 auto;
     justify-content: space-around;
     position: relative;
+}
+
+.direction img{
+    width: 30px;
+    margin-left: 20px;
+}
+
+.icon-direction{
+    width: 10%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }

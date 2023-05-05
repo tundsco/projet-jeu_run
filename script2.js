@@ -86,21 +86,6 @@ obstacles.forEach((obstacle) => {
   requestAnimationFrame(animateObstacle);
 });
 
-function checkCollisions() {
-  const player = document.getElementsByClassName('caractere1')[0];
-  const obstacle1 = document.getElementsByClassName('obstacle1')[0];
-  const obstacle2 = document.getElementsByClassName('obstacle2')[0];
-  const obstacle3 = document.getElementsByClassName('obstacle3')[0];
-  const obstacle4 = document.getElementsByClassName('obstacle4')[0];
-
-  if (checkCollision(player, obstacle1) || 
-      checkCollision(player, obstacle2) || 
-      checkCollision(player, obstacle3) || 
-      checkCollision(player, obstacle4)) {
-    // Collision détectée, faire quelque chose ici
-    console.log('Collision détectée');
-  }
-}
 
 function checkCollision(element1, element2) {
   const rect1 = element1.getBoundingClientRect();
@@ -130,21 +115,30 @@ function checkCollisions() {
       document.body.appendChild(gameOver);
       
       // Arrêter le jeu
-      gameRunning = false;
+      stopAnimation();
     }
   });
 }
 
-let gamerunning = true
 
-// Animation loop
+let gamerunning = true;
+let animationId;
+
 function animate() {
-  if (gamerunning) {
-    // ...
-    checkCollisions();
-    requestAnimationFrame(animate);
+  // continuer l'animation si le jeu est en cours
+  // ...
+
+  checkCollisions();
+
+  // arrêter l'animation si le jeu est terminé
+  if (!gamerunning) {
+    return cancelAnimationFrame(animationId);
   }
+
+  animationId = requestAnimationFrame(animate);
 }
 
-
 animate();
+
+
+

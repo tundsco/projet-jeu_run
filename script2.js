@@ -58,7 +58,7 @@ window.addEventListener('keydown', function(event) {
 const obstacles = document.querySelectorAll('.obstacle');
 
 obstacles.forEach((obstacle) => {
-  const duration = 4200;
+  const duration = 3000;
   const containerHeight = document.documentElement.clientHeight;
   const obstacleHeight = obstacle.offsetHeight;
   const distance = containerHeight + obstacleHeight;

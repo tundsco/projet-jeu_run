@@ -45,9 +45,6 @@ main{
     position: absolute;
 }
 
-.obstacle4 img{
-}
-
 .obstacle{
     display: flex;
     width: 10%;

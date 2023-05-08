@@ -35,30 +35,17 @@ main{
 }
 
 .obstacle1 img{
-    width: 150px;
+    width: 170px;
     position: absolute;
     margin-top: 200px;
 }
 
 .obstacle2 img{
-    width: 120px;
+    width: 140px;
     position: absolute;
 }
 
-.bonus3 img{
-    width: 110px;
-    position: absolute;
-    margin-top: 200px;
-}
-
-.bonus1 img{
-    width: 80px;
-    margin-top: 200px;
-}
-
-.bonus2 img{
-    width: 50px;
-    margin-top: 150px;
+.obstacle4 img{
 }
 
 .obstacle{
@@ -79,4 +66,13 @@ main{
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+}
+
+
+.container{
+    position: relative;
+    left: 18%;
+    display: flex;
+    justify-content: space-between;
+    width: 55%;
 }

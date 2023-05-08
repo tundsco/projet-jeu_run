@@ -14,11 +14,11 @@ function jump() {
       playerTop = parseInt(window.getComputedStyle(player).getPropertyValue('top'));
       const boardTop = parseInt(window.getComputedStyle(board).getPropertyValue('top'));
 
-      if (playerTop > originalPlayerTop - 250) {
+      if (playerTop > originalPlayerTop - 200) {
         player.style.top = (playerTop - 10) + 'px';
       }
 
-      if (playerTop <= originalPlayerTop - 250) {
+      if (playerTop <= originalPlayerTop - 200) {
         clearInterval(jumpInterval);
 
         let fallInterval = setInterval(function() {

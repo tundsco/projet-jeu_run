@@ -57,7 +57,21 @@ window.addEventListener('keydown', function(event) {
 
 const obstacles = document.querySelectorAll('.obstacle');
 
-obstacles.forEach((obstacle) => {
+function createObstacle() {
+  const obstacle = document.createElement('div');
+  obstacle.classList.add('obstacle');
+  obstacle.style.left = Math.floor(Math.random() * 75) + '%'; // générer une position aléatoire pour l'obstacle
+  board.appendChild(obstacle);
+}
+
+obstacles.forEach(obstacle => {
+  // Génération aléatoire de la position de départ
+  const minStartPos = -200; // position minimale de départ
+  const maxStartPos = -50; // position maximale de départ
+  const randomStartPos = Math.floor(Math.random() * (maxStartPos - minStartPos + 1)) + minStartPos;
+
+  obstacle.style.top = randomStartPos + 'px'; // positionner l'obstacle avec la position de départ aléatoire
+
   const duration = 3000;
   const containerHeight = document.documentElement.clientHeight;
   const obstacleHeight = obstacle.offsetHeight;
@@ -66,25 +80,29 @@ obstacles.forEach((obstacle) => {
   let startPosition = obstacle.offsetTop;
   let startTime = performance.now();  
 
-  obstacle.style.top = startPosition + 'px';
-
   function animateObstacle(currentTime) {
     const elapsed = currentTime - startTime;
-
-    if (elapsed < duration) {
+  
+    if (elapsed < duration && gamerunning) { // Vérifier si le jeu est en cours
       const position = startPosition + speed * elapsed;
       obstacle.style.top = position + 'px';
       requestAnimationFrame(animateObstacle);
-    } else {
-      obstacle.style.top = '0px';
+  } else {
+      obstacle.style.top = randomStartPos + 'px'; // redéfinir la position de départ aléatoire
       startTime = performance.now();
       startPosition = obstacle.offsetTop;
       requestAnimationFrame(animateObstacle);
-    }
   }
-
+}
+  
   requestAnimationFrame(animateObstacle);
 });
+
+function randomPosition() {
+  const containerHeight = document.documentElement.clientHeight;
+  const obstacleHeight = 80; // hauteur des obstacles, vous pouvez la changer selon vos besoins
+  return -obstacleHeight - Math.floor(Math.random() * (containerHeight - obstacleHeight));
+}
 
 
 function checkCollision(element1, element2) {
@@ -113,10 +131,47 @@ function checkCollisions() {
       gameOver.style.color = 'white';
       gameOver.style.padding = '20px';
       document.body.appendChild(gameOver);
-      
+
       // Arrêter le jeu
-      stopAnimation();
+      gamerunning = false;
+      cancelAnimationFrame(animationId);
     }
+  });
+}
+
+function drawObstacles() {
+  obstacles.forEach(obstacle => {
+    // Génération aléatoire de la position de départ
+    const minStartPos = -200; // position minimale de départ
+    const maxStartPos = -50; // position maximale de départ
+    const randomStartPos = Math.floor(Math.random() * (maxStartPos - minStartPos + 1)) + minStartPos;
+
+    obstacle.style.top = randomStartPos + 'px'; // positionner l'obstacle avec la position de départ aléatoire
+
+    const duration = 3000;
+    const containerHeight = document.documentElement.clientHeight;
+    const obstacleHeight = obstacle.offsetHeight;
+    const distance = containerHeight + obstacleHeight;
+    const speed = distance / duration;
+    let startPosition = obstacle.offsetTop;
+    let startTime = performance.now();  
+
+    function animateObstacle(currentTime) {
+      const elapsed = currentTime - startTime;
+
+      if (elapsed < duration && gamerunning) { // Vérifier si le jeu est en cours
+        const position = startPosition + speed * elapsed;
+        obstacle.style.top = position + 'px';
+        requestAnimationFrame(animateObstacle);
+      } else {
+        obstacle.style.top = randomStartPos + 'px'; // redéfinir la position de départ aléatoire
+        startTime = performance.now();
+        startPosition = obstacle.offsetTop;
+        requestAnimationFrame(animateObstacle);
+      }
+    }
+
+    requestAnimationFrame(animateObstacle);
   });
 }
 
@@ -139,6 +194,5 @@ function animate() {
 }
 
 animate();
-
 
 

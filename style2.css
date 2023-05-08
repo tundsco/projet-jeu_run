@@ -11,18 +11,6 @@ main{
     transform: translateX(-50%);
 }
 
-.button img{
-    width: 30px;
-    cursor: pointer;
-}
-
-.button{
-    width: 6%;
-    display: flex;
-    justify-content: space-between;
-    margin-left: 40px;
-}
-
 .caractere1{
     height: 170px;
     display: block;

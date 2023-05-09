@@ -122,14 +122,19 @@ function checkCollisions() {
     if (checkCollision(player, obstacle)) {
       // Afficher le message "Game Over"
       const gameOver = document.createElement('div');
-      gameOver.textContent = 'Game Over';
+      gameOver.textContent = 'Vous avez perdu';
+      gameOver.title = 'VOTRE SCORE';
       gameOver.style.position = 'fixed';
       gameOver.style.top = '50%';
       gameOver.style.left = '50%';
       gameOver.style.transform = 'translate(-50%, -50%)';
-      gameOver.style.backgroundColor = 'red';
+      gameOver.style.backgroundColor = 'rgba(0, 0, 0, .25)';
       gameOver.style.color = 'white';
       gameOver.style.padding = '20px';
+      gameOver.style.width = '550px';
+      gameOver.style.height = '450px';
+      gameOver.style.borderRadius = '15px';
+      gameOver.style.borderColor = 'black'
       document.body.appendChild(gameOver);
 
       // Arrêter le jeu

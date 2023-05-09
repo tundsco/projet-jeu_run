@@ -172,6 +172,36 @@ function checkCollisions() {
   });
 }
 
+// JavaScript
+const gameContainer = document.getElementsByClassName('container');
+const background = document.getElementById('body');
+let distance = 0;
+let lastTime = 0;
+
+function updateDistance(currentTime) {
+  if (lastTime !== 0) { // ne pas compter la première frame
+    const elapsedTime = currentTime - lastTime;
+    const pixelsPerSecond = 600; // distance parcourue par seconde
+    const pixelsPerFrame = pixelsPerSecond * (elapsedTime / 1000);
+    distance += pixelsPerFrame;
+  }
+  lastTime = currentTime;
+  requestAnimationFrame(updateDistance);
+}
+
+requestAnimationFrame(updateDistance);
+
+// déplacer le décor à chaque frame
+let backgroundPosition = 0;
+function moveBackground() {
+  backgroundPosition -= 10; // vitesse du décor
+  background.style.backgroundPositionX = backgroundPosition + 'px';
+  requestAnimationFrame(moveBackground);
+}
+
+requestAnimationFrame(moveBackground);
+
+
 
 
 let gamerunning = true;

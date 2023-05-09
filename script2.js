@@ -1,3 +1,4 @@
+
 const player = document.getElementsByClassName('caractere1')[0];
 const board = document.getElementById('game');
 
@@ -171,41 +172,6 @@ function checkCollisions() {
   });
 }
 
-function drawObstacles() {
-  obstacles.forEach(obstacle => {
-    // Génération aléatoire de la position de départ
-    const minStartPos = -200; // position minimale de départ
-    const maxStartPos = -50; // position maximale de départ
-    const randomStartPos = Math.floor(Math.random() * (maxStartPos - minStartPos + 1)) + minStartPos;
-
-    obstacle.style.top = randomStartPos + 'px'; // positionner l'obstacle avec la position de départ aléatoire
-
-    const duration = 3000;
-    const containerHeight = document.documentElement.clientHeight;
-    const obstacleHeight = obstacle.offsetHeight;
-    const distance = containerHeight + obstacleHeight;
-    const speed = distance / duration;
-    let startPosition = obstacle.offsetTop;
-    let startTime = performance.now();  
-
-    function animateObstacle(currentTime) {
-      const elapsed = currentTime - startTime;
-
-      if (elapsed < duration && gamerunning) { // Vérifier si le jeu est en cours
-        const position = startPosition + speed * elapsed;
-        obstacle.style.top = position + 'px';
-        requestAnimationFrame(animateObstacle);
-      } else {
-        obstacle.style.top = randomStartPos + 'px'; // redéfinir la position de départ aléatoire
-        startTime = performance.now();
-        startPosition = obstacle.offsetTop;
-        requestAnimationFrame(animateObstacle);
-      }
-    }
-
-    requestAnimationFrame(animateObstacle);
-  });
-}
 
 
 let gamerunning = true;

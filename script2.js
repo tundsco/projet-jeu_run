@@ -122,8 +122,10 @@ function checkCollisions() {
     if (checkCollision(player, obstacle)) {
       // Afficher le message "Game Over"
       const gameOver = document.createElement('div');
-      gameOver.textContent = 'Vous avez perdu';
-      gameOver.title = 'VOTRE SCORE';
+      gameOver.textContent = 'VOICI VOTRE SCORE :';
+      gameOver.style.textAlign = 'center';
+      gameOver.style.fontSize = '25px';
+      gameOver.style.fontFamily = 'Arial';
       gameOver.style.position = 'fixed';
       gameOver.style.top = '50%';
       gameOver.style.left = '50%';
@@ -132,10 +134,35 @@ function checkCollisions() {
       gameOver.style.color = 'white';
       gameOver.style.padding = '20px';
       gameOver.style.width = '550px';
-      gameOver.style.height = '450px';
+      gameOver.style.height = '400px';
       gameOver.style.borderRadius = '15px';
       gameOver.style.borderColor = 'black'
       document.body.appendChild(gameOver);
+
+      const score = document.createElement('input');
+      score.style.width = '290px';
+      score.style.height = '40px';
+      score.backgroundColor = 'white';
+      score.style.position = 'fixed';
+      score.style.top = '40%';
+      score.style.left = '25%';
+      score.style.borderRadius = '5px';
+      gameOver.appendChild(score);
+
+      // Ajouter un bouton "Restart"
+      const restartButton = document.createElement('button');
+      restartButton.textContent = 'Recommencez';
+      restartButton.style.marginTop = '20px';
+      restartButton.style.padding = '15px';
+      restartButton.style.borderRadius = '5px';
+      restartButton.style.position = 'fixed';
+      restartButton.style.cursor = 'pointer';
+      restartButton.style.top = '75%';
+      restartButton.style.left = '40%';
+      restartButton.addEventListener('click', function() {
+        location.reload();
+      });
+      gameOver.appendChild(restartButton);
 
       // Arrêter le jeu
       gamerunning = false;
